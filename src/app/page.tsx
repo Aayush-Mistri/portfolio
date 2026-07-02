@@ -292,11 +292,11 @@ export default function Home() {
           />
         </motion.div>
 
-        <div style={{ position: "absolute", left: "5%", top: "50%", transform: "translateY(-50%)", fontFamily: "var(--font-syne)", fontSize: "clamp(1rem, 3vw, 2rem)", fontWeight: 800, color: "var(--color-yellow)", textTransform: "uppercase", opacity: 0.15, lineHeight: 1.1, userSelect: "none", pointerEvents: "none" }}>
-          SERIOUS<br/>SERIES:<br/>WORK<br/>HISTORY
+        <div style={{ position: "absolute", left: "5%", top: "50%", transform: "translateY(-50%)", fontFamily: "var(--font-syne)", fontSize: "clamp(1rem, 3vw, 2rem)", fontWeight: 800, color: "yellow", textTransform: "uppercase", opacity: 0.15, lineHeight: 1.1, userSelect: "none", pointerEvents: "none" }}>
+           HelloWorld<br/>("print")
         </div>
-        <div style={{ position: "absolute", right: "5%", top: "50%", transform: "translateY(-50%)", fontFamily: "var(--font-syne)", fontSize: "clamp(1rem, 3vw, 2rem)", fontWeight: 800, color: "var(--color-pink)", textTransform: "uppercase", opacity: 0.15, lineHeight: 1.1, textAlign: "right", userSelect: "none", pointerEvents: "none" }}>
-          NEVER<br/>GIVE<br/>UP
+        <div style={{ position: "absolute", right: "5%", top: "50%", transform: "translateY(-50%)", fontFamily: "var(--font-syne)", fontSize: "clamp(1rem, 3vw, 2rem)", fontWeight: 800, color: "green", textTransform: "uppercase", opacity: 0.15, lineHeight: 1.1, textAlign: "right", userSelect: "none", pointerEvents: "none" }}>
+          
         </div>
       </div>
 
