@@ -151,10 +151,18 @@ export default function Home() {
             transition={{ type: "spring", stiffness: 100, damping: 15 }}
           >
             <span className={styles.subTitle}>👾 Welcome to my space</span>
-            <motion.h1 className={styles.mainTitle} style={{ x: titleX }}>
-              Aayush <br />
-              <span className={styles.highlightText}>Mistri</span>
-            </motion.h1>
+            
+            <div className={styles.titleRow}>
+              <motion.h1 className={styles.mainTitle} style={{ x: titleX }}>
+                Aayush <br />
+                <span className={styles.highlightText}>Mistri</span>
+              </motion.h1>
+
+              <div className={styles.retroAniContainer}>
+                <img src="/ani/image-Photoroom%20(1).png" className={styles.retroAni} alt="ani1" />
+                <img src="/ani/image-Photoroom.png" className={styles.retroAni} alt="ani2" />
+              </div>
+            </div>
             <p className={styles.heroBio}>
               Backend Developer specializing in constructing high-performance server-side architectures, database management, and API design. Building fast, real-time products.
             </p>
