@@ -1,0 +1,124 @@
+.page {
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  background-color: var(--bg-primary);
+  color: var(--color-white);
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: var(--font-syne);
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.form {
+  background: var(--color-white);
+  color: var(--color-black);
+  padding: 2rem;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-flat-black);
+}
+
+.field {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field label {
+  font-family: var(--font-mono);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.input, .textarea, .textareaLarge {
+  font-family: var(--font-grotesk);
+  padding: 0.75rem;
+  border: var(--border-medium);
+  border-radius: 0;
+  font-size: 1rem;
+}
+
+.input:focus, .textarea:focus, .textareaLarge:focus {
+  outline: none;
+  border-color: var(--color-pink);
+}
+
+.textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.textareaLarge {
+  height: 400px;
+  resize: vertical;
+  font-family: var(--font-mono);
+}
+
+.error {
+  background: var(--color-pink);
+  color: var(--color-white);
+  padding: 1rem;
+  border: var(--border-medium);
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.submitBtn {
+  flex: 2;
+  padding: 1rem;
+  font-family: var(--font-syne);
+  font-weight: 800;
+  text-transform: uppercase;
+  background: var(--color-green);
+  color: var(--color-black);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-flat-black);
+  cursor: pointer;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--color-black);
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: 1rem;
+  font-family: var(--font-syne);
+  text-transform: uppercase;
+  background: var(--color-white);
+  color: var(--color-black);
+  border: var(--border-medium);
+  cursor: pointer;
+}
+
+.cancelBtn:hover {
+  background: var(--color-yellow);
+}
+
+@media (max-width: 640px) {
+  .actions {
+    flex-direction: column;
+  }
+}

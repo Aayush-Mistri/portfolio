@@ -1,0 +1,121 @@
+.footer {
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: 6rem 1.5rem 3rem 1.5rem;
+  border-top: var(--border-thick);
+  position: relative;
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+}
+
+@media (max-width: 900px) {
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.footerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.footerHeading {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contactBox {
+  border: var(--border-medium);
+  border-color: var(--color-white);
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  transition: all 0.2s;
+}
+
+.contactBox:hover {
+  border-color: var(--color-yellow);
+  box-shadow: 4px 4px 0px var(--color-yellow);
+}
+
+.contactLabel {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.contactValue {
+  font-family: var(--font-mono);
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: bold;
+  word-break: break-all;
+}
+
+.footerRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+@media (max-width: 900px) {
+  .footerRight {
+    align-items: flex-start;
+    gap: 2rem;
+  }
+}
+
+.copyright {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.backToTop {
+  background: var(--color-yellow);
+  color: var(--color-black);
+  border: var(--border-thick);
+  box-shadow: 4px 4px 0px #000;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: all 0.15s;
+}
+
+.backToTop:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #000;
+  background: var(--color-pink);
+  color: var(--color-white);
+}
+
+.backToTop:active {
+  transform: translate(0, 0);
+  box-shadow: 2px 2px 0px #000;
+}

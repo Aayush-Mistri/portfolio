@@ -587,6 +587,7 @@
   }
 }
 
+/* Anime Divider */
 .animeDividerContainer {
   width: 100%;
   display: flex;
@@ -620,3 +621,28 @@
   pointer-events: none;
 }
 
+/* Blog Preview Section */
+.blogPreviewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 480px) {
+  .blogPreviewGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.viewMoreContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.emptyText {
+  text-align: center;
+  padding: 2rem;
+  font-family: var(--font-mono);
+  grid-column: 1 / -1;
+}

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Copy, Check, ChevronUp, Briefcase } from "lucide-react";
+import { Briefcase, Check, Copy, ChevronUp } from "lucide-react";
 import styles from "./page.module.css";
 
 // Components
@@ -10,6 +10,9 @@ import Marquee from "../components/Marquee";
 import ProfileAvatar from "../components/ProfileAvatar";
 import RetroWindow from "../components/RetroWindow";
 import ProjectCard from "../components/ProjectCard";
+import BlogCard from "../components/BlogCard";
+import Footer from "../components/Footer";
+import Link from "next/link";
 
 // Custom Github SVG Icon
 const GithubIcon = ({ size = 16, className = "" }: { size?: number; className?: string }) => (
@@ -48,8 +51,17 @@ const LinkedinIcon = ({ size = 16, className = "" }: { size?: number; className?
   </svg>
 );
 
+interface BlogPreviewData {
+  title: string;
+  slug: string;
+  coverImageUrl: string;
+  excerpt: string;
+  createdAt: string;
+}
+
 export default function Home() {
   const [copied, setCopied] = useState(false);
+  const [blogs, setBlogs] = useState<BlogPreviewData[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Scroll animations setup
@@ -68,6 +80,21 @@ export default function Home() {
   const onepunchScale = useTransform(scrollYProgress, [0.12, 0.42], [0.6, 1.15]);
   const onepunchY = useTransform(scrollYProgress, [0.12, 0.42], [140, -40]);
   const onepunchRotate = useTransform(scrollYProgress, [0.12, 0.42], [-15, 10]);
+
+  useEffect(() => {
+    async function fetchBlogs() {
+      try {
+        const res = await fetch('/api/blogs');
+        if (res.ok) {
+          const data = await res.json();
+          setBlogs(data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch blogs for preview", err);
+      }
+    }
+    fetchBlogs();
+  }, []);
 
   const copyEmail = () => {
     navigator.clipboard.writeText("aayushhmistri@gmail.com");
@@ -138,6 +165,9 @@ export default function Home() {
               <a href="#contact" className="btn-brutalist">
                 Contact Me 📞
               </a>
+              <Link href="/blog" className="btn-brutalist" style={{ background: "var(--color-pink)" }}>
+                View Blogs ✍️
+              </Link>
             </div>
           </motion.div>
 
@@ -336,6 +366,45 @@ export default function Home() {
               tags={["React", "Node.js", "WebSockets", "TypeScript"]}
               accentColor="cyan"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Preview Section */}
+      <section className={styles.section} id="blog">
+        <div className={styles.container}>
+          <div className={styles.sectionTitleContainer}>
+            <h2 className={styles.sectionTitle}>Blog</h2>
+            <span className={styles.sectionTag}>Latest Updates</span>
+          </div>
+
+          <div className={styles.blogPreviewGrid}>
+            {blogs.length > 0 ? (
+              blogs.slice(0, 3).map((blog, index) => (
+                <BlogCard
+                  key={blog.slug}
+                  title={blog.title}
+                  slug={blog.slug}
+                  excerpt={blog.excerpt}
+                  coverImageUrl={blog.coverImageUrl}
+                  date={new Date(blog.createdAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                  index={index}
+                  accentColor={['yellow', 'green', 'purple', 'cyan', 'pink'][index % 5] as any}
+                />
+              ))
+            ) : (
+              <p className={styles.emptyText}>No blog posts yet. Stay tuned!</p>
+            )}
+          </div>
+          
+          <div className={styles.viewMoreContainer}>
+            <Link href="/blog" className="btn-brutalist">
+              View All Blogs 📖
+            </Link>
           </div>
         </div>
       </section>
