@@ -57,7 +57,12 @@ export default function NewBlogPage() {
   return (
     <div className={styles.page}>
       <div className={styles.container}>
-        <h1 className={styles.title}>Create New Blog Post</h1>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem" }}>
+          <h1 className={styles.title}>Create New Blog Post</h1>
+          <Link href="/admin/blog/manage" className="btn-brutalist" style={{ background: "var(--color-cyan)" }}>
+            Manage Blogs ⚙️
+          </Link>
+        </div>
         
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
