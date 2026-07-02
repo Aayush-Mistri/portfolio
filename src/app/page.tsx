@@ -64,6 +64,11 @@ export default function Home() {
   const rotateShape2 = useTransform(scrollYProgress, [0, 1], [-25, -200]);
   const scaleShape3 = useTransform(scrollYProgress, [0.3, 0.7], [0.8, 1.3]);
 
+  // Anime characters scroll animations (inline responsive dynamics)
+  const onepunchScale = useTransform(scrollYProgress, [0.12, 0.42], [0.6, 1.15]);
+  const onepunchY = useTransform(scrollYProgress, [0.12, 0.42], [140, -40]);
+  const onepunchRotate = useTransform(scrollYProgress, [0.12, 0.42], [-15, 10]);
+
   const copyEmail = () => {
     navigator.clipboard.writeText("aayushhmistri@gmail.com");
     setCopied(true);
@@ -75,13 +80,13 @@ export default function Home() {
   };
 
   const skills = [
-    "Node.js", "Express.js", "JavaScript", "REST APIs", 
-    "MongoDB", "Python", "Git", "React", "Socket.IO", "SQL"
+    "Python", "TypeScript", "LLMs", "RAG", "Machine Learning", 
+    "LangChain", "Vector Databases", "Node.js", "Express.js", "MongoDB", "SQL"
   ];
 
   const marqueeSkills = [
-    "BACKEND DEVELOPER", "NODE.JS EXPERT", "REST API DESIGN", 
-    "MONGODB INTEGRATION", "SOCKET.IO CHAT", "PYTHON", "REACT UI"
+    "BACKEND DEVELOPER", "AI ENGINEER", "LLMS & RAG", 
+    "PYTHON & TYPESCRIPT", "REST APIS", "MACHINE LEARNING"
   ];
 
   return (
@@ -153,21 +158,46 @@ export default function Home() {
       <section className={styles.section} id="about">
         <div className={styles.container}>
           <div className={styles.sectionTitleContainer}>
-            <h2 className={styles.sectionTitle}>Summary</h2>
+            <h2 className={styles.sectionTitle}>Summary & Activity</h2>
             <span className={styles.sectionTag}>AAYUSH.SYS</span>
           </div>
 
-          <RetroWindow title="biography.exe" headerBg="var(--color-pink)" headerColor="var(--color-white)" statusText="File size: 1.2KB">
-            <div className={styles.summaryInner}>
-              <div className={styles.cmdLine}>
-                <span>&gt;_</span>
-                <span>cat self_description.txt</span>
+          <div className={styles.aboutGrid}>
+            <RetroWindow title="biography.exe" headerBg="var(--color-pink)" headerColor="var(--color-white)" statusText="File size: 1.2KB">
+              <div className={styles.summaryInner}>
+                <div className={styles.cmdLine}>
+                  <span>&gt;_</span>
+                  <span>cat self_description.txt</span>
+                </div>
+                <p className={styles.cmdOutput}>
+                  Backend Developer with hands-on experience building server-side applications, managing databases, and integrating APIs using Node.js and Express. Completed a 10-month internship delivering real-world backend solutions. Passionate about continuous learning, with additional exposure to Machine Learning, Data Analytics, and full-stack development.
+                </p>
               </div>
-              <p className={styles.cmdOutput}>
-                Backend Developer with hands-on experience building server-side applications, managing databases, and integrating APIs using Node.js and Express. Completed a 10-month internship delivering real-world backend solutions. Passionate about continuous learning, with additional exposure to Machine Learning, Data Analytics, and full-stack development.
-              </p>
-            </div>
-          </RetroWindow>
+            </RetroWindow>
+
+            <RetroWindow title="github_activity.exe" headerBg="var(--color-green)" headerColor="var(--color-black)" statusText="Real-time chart">
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                <div className={styles.cmdLine}>
+                  <span>&gt;_</span>
+                  <span>curl -s ghchart.rshah.org/Aayush-Mistri</span>
+                </div>
+                <div style={{ overflowX: "auto", border: "2px solid #000", background: "#ffffff", padding: "1rem", borderRadius: "4px" }}>
+                  <div style={{ minWidth: "500px" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img 
+                      src="https://ghchart.rshah.org/39ff14/Aayush-Mistri" 
+                      alt="Aayush Mistri's Github Contributions" 
+                      style={{ width: "100%", height: "auto", display: "block" }} 
+                    />
+                  </div>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", fontFamily: "var(--font-mono)", color: "#555" }}>
+                  <span>Less activity</span>
+                  <span>More activity</span>
+                </div>
+              </div>
+            </RetroWindow>
+          </div>
         </div>
       </section>
 
@@ -205,6 +235,32 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* One Punch Man divider — scroll-animated between Skills & Experience */}
+      <div className={styles.animeDividerContainer}>
+        <motion.div
+          className={styles.dividerAnime}
+          style={{ scale: onepunchScale, y: onepunchY, rotate: onepunchRotate }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/anime_onepunch.png"
+            alt="One Punch Man"
+            style={{ width: "280px", height: "auto", objectFit: "contain", filter: "drop-shadow(-6px 6px 0px var(--color-yellow))" }}
+          />
+        </motion.div>
+
+        <div style={{ position: "absolute", left: "5%", top: "50%", transform: "translateY(-50%)", fontFamily: "var(--font-syne)", fontSize: "clamp(1rem, 3vw, 2rem)", fontWeight: 800, color: "var(--color-yellow)", textTransform: "uppercase", opacity: 0.15, lineHeight: 1.1, userSelect: "none", pointerEvents: "none" }}>
+          SERIOUS<br/>SERIES:<br/>WORK<br/>HISTORY
+        </div>
+        <div style={{ position: "absolute", right: "5%", top: "50%", transform: "translateY(-50%)", fontFamily: "var(--font-syne)", fontSize: "clamp(1rem, 3vw, 2rem)", fontWeight: 800, color: "var(--color-pink)", textTransform: "uppercase", opacity: 0.15, lineHeight: 1.1, textAlign: "right", userSelect: "none", pointerEvents: "none" }}>
+          NEVER<br/>GIVE<br/>UP
+        </div>
+      </div>
 
       {/* Experience Section */}
       <section className={styles.section} id="experience">
@@ -263,7 +319,7 @@ export default function Home() {
               index="01"
               title="Cohort"
               description="Full-stack platform for Indian users with scheduled messaging, event management, community groups, 24-hour stories, and AI-powered Indian language translation (Gemini API). Built in collaboration with DevERP Solutions."
-              tags={["Node.js", "Express", "React", "MongoDB", "Socket.IO", "Gemini API"]}
+              tags={["Node.js", "Express", "React", "MongoDB", "LLMs", "Gemini API"]}
               accentColor="purple"
             />
             <ProjectCard
@@ -277,7 +333,7 @@ export default function Home() {
               index="03"
               title="Chess Online"
               description="Real-time online chess platform enabling matches with random players using WebSocket-based communication and instant matchmaking."
-              tags={["React", "Node.js", "WebSockets", "CSS"]}
+              tags={["React", "Node.js", "WebSockets", "TypeScript"]}
               accentColor="cyan"
             />
           </div>
@@ -296,7 +352,7 @@ export default function Home() {
           </div>
 
           <div className={styles.educationGrid}>
-            
+
             {/* Education Receipt */}
             <motion.div 
               className={styles.receiptCard}
@@ -310,6 +366,31 @@ export default function Home() {
                 <span className={styles.receiptTime}>DATE: MAY 2026</span>
               </div>
 
+              {/* MCA - Current */}
+              <div style={{ marginBottom: "2rem", paddingBottom: "1rem", borderBottom: "2px dashed #ccc" }}>
+                <div className={styles.receiptItem} style={{ color: "var(--color-purple)", fontWeight: 800 }}>
+                  <span>▶ CURRENT:</span>
+                  <span className={styles.receiptItemVal}>MCA (Master of Computer Applications)</span>
+                </div>
+                <div className={styles.receiptItem}>
+                  <span>COLLEGE:</span>
+                  <span className={styles.receiptItemVal}>LJ University</span>
+                </div>
+                <div className={styles.receiptItem}>
+                  <span>LOCATION:</span>
+                  <span className={styles.receiptItemVal}>Ahmedabad, Gujarat</span>
+                </div>
+                <div className={styles.receiptItem}>
+                  <span>STARTED:</span>
+                  <span className={styles.receiptItemVal}>July 2026</span>
+                </div>
+                <div className={styles.receiptTotal} style={{ borderColor: "var(--color-purple)", color: "var(--color-purple)" }}>
+                  <span>STATUS:</span>
+                  <span>IN PROGRESS ✦</span>
+                </div>
+              </div>
+
+              {/* BCA */}
               <div style={{ marginBottom: "2rem" }}>
                 <div className={styles.receiptItem}>
                   <span>DEGREE:</span>

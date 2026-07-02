@@ -547,3 +547,76 @@
   transform: translate(0, 0);
   box-shadow: 2px 2px 0px #000;
 }
+
+/* About Grid Layout */
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (max-width: 980px) {
+  .aboutGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Scroll aligned anime stickers local styling */
+.heroAvatarArea {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.heroAnimeCharacter {
+  position: absolute;
+  left: -140px;
+  bottom: -40px;
+  z-index: -1;
+  width: 200px;
+  height: auto;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .heroAnimeCharacter {
+    display: none; /* Hide on mobile/small screens to fit avatar */
+  }
+}
+
+.animeDividerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+  min-height: 340px;
+  position: relative;
+  background: var(--bg-secondary);
+  border-top: var(--border-thick);
+  border-bottom: var(--border-thick);
+  overflow: hidden;
+}
+
+.dividerAnime {
+  width: 280px;
+  height: auto;
+  pointer-events: none;
+}
+
+.educationCollage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.collageAnime {
+  width: 260px;
+  height: auto;
+  pointer-events: none;
+}
+
