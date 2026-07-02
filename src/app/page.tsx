@@ -1,66 +1,461 @@
-import Image from "next/image";
+"use client";
+
+import React, { useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Copy, Check, ChevronUp, Github, Linkedin, Mail, Phone, Calendar, Briefcase, GraduationCap, Award } from "lucide-react";
 import styles from "./page.module.css";
 
+// Components
+import Marquee from "../components/Marquee";
+import ProfileAvatar from "../components/ProfileAvatar";
+import RetroWindow from "../components/RetroWindow";
+import ProjectCard from "../components/ProjectCard";
+
 export default function Home() {
+  const [copied, setCopied] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Scroll animations setup
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Parallax effects for text and decorations
+  const titleX = useTransform(scrollYProgress, [0, 0.5], [0, -100]);
+  const rotateShape1 = useTransform(scrollYProgress, [0, 1], [15, 360]);
+  const rotateShape2 = useTransform(scrollYProgress, [0, 1], [-25, -200]);
+  const scaleShape3 = useTransform(scrollYProgress, [0.3, 0.7], [0.8, 1.3]);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText("aayushhmistri@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const skills = [
+    "Node.js", "Express.js", "JavaScript", "REST APIs", 
+    "MongoDB", "Python", "Git", "React", "Socket.IO", "SQL"
+  ];
+
+  const marqueeSkills = [
+    "BACKEND DEVELOPER", "NODE.JS EXPERT", "REST API DESIGN", 
+    "MONGODB INTEGRATION", "SOCKET.IO CHAT", "PYTHON", "REACT UI"
+  ];
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div ref={containerRef} className={styles.page}>
+      
+      {/* 2D/3D Floating Background Elements (Scroll Aligned) */}
+      <div className={`${styles.gridBackground} bg-dots`} />
+      
+      <motion.div 
+        className={`${styles.floatingShape} ${styles.shape1}`}
+        style={{ rotate: rotateShape1 }}
+      >
+        ✦
+      </motion.div>
+      <motion.div 
+        className={`${styles.floatingShape} ${styles.shape2}`}
+        style={{ rotate: rotateShape2 }}
+      >
+        ★
+      </motion.div>
+      <motion.div 
+        className={`${styles.floatingShape} ${styles.shape3}`}
+        style={{ scale: scaleShape3 }}
+      >
+        ✿
+      </motion.div>
+
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <motion.div 
+            className={styles.heroText}
+            initial={{ x: -80, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 100, damping: 15 }}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            <span className={styles.subTitle}>👾 Welcome to my space</span>
+            <motion.h1 className={styles.mainTitle} style={{ x: titleX }}>
+              Aayush <br />
+              <span className={styles.highlightText}>Mistri</span>
+            </motion.h1>
+            <p className={styles.heroBio}>
+              Backend Developer specializing in constructing high-performance server-side architectures, database management, and API design. Building fast, real-time products.
+            </p>
+            <div className={styles.heroButtons}>
+              <a href="#projects" className="btn-brutalist" style={{ background: "var(--color-cyan)" }}>
+                View Projects ⚡
+              </a>
+              <a href="#contact" className="btn-brutalist">
+                Contact Me 📞
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0, rotate: 10 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 120, damping: 18, delay: 0.1 }}
+          >
+            <ProfileAvatar />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Infinite Skills Marquee banner */}
+      <Marquee items={marqueeSkills} speed="normal" bgColor="var(--color-yellow)" textColor="var(--color-black)" />
+
+      {/* About Section */}
+      <section className={styles.section} id="about">
+        <div className={styles.container}>
+          <div className={styles.sectionTitleContainer}>
+            <h2 className={styles.sectionTitle}>Summary</h2>
+            <span className={styles.sectionTag}>AAYUSH.SYS</span>
+          </div>
+
+          <RetroWindow title="biography.exe" headerBg="var(--color-pink)" headerColor="var(--color-white)" statusText="File size: 1.2KB">
+            <div className={styles.summaryInner}>
+              <div className={styles.cmdLine}>
+                <span>&gt;_</span>
+                <span>cat self_description.txt</span>
+              </div>
+              <p className={styles.cmdOutput}>
+                Backend Developer with hands-on experience building server-side applications, managing databases, and integrating APIs using Node.js and Express. Completed a 10-month internship delivering real-world backend solutions. Passionate about continuous learning, with additional exposure to Machine Learning, Data Analytics, and full-stack development.
+              </p>
+            </div>
+          </RetroWindow>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section className={styles.section} id="skills">
+        <div className={styles.container}>
+          <div className={styles.sectionTitleContainer}>
+            <h2 className={styles.sectionTitle}>Skills</h2>
+            <span className={styles.sectionTag}>Tech Stack</span>
+          </div>
+
+          <div className={styles.skillsGrid}>
+            {skills.map((skill, index) => {
+              const bgColors = ["var(--color-yellow)", "var(--color-green)", "var(--color-cyan)", "var(--color-pink)", "var(--color-white)"];
+              const randomBg = bgColors[index % bgColors.length];
+              
+              return (
+                <motion.div
+                  key={index}
+                  className={styles.skillItem}
+                  style={{ background: "var(--color-white)" }}
+                  whileHover={{ 
+                    scale: 1.08, 
+                    backgroundColor: randomBg,
+                    color: "var(--color-black)",
+                    boxShadow: "8px 8px 0px var(--color-black)",
+                    transform: "rotate(" + (index % 2 === 0 ? 3 : -3) + "deg)"
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                >
+                  {skill}
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section className={styles.section} id="experience">
+        <div className={styles.container}>
+          <div className={styles.sectionTitleContainer}>
+            <h2 className={styles.sectionTitle}>Experience</h2>
+            <span className={styles.sectionTag}>Work History</span>
+          </div>
+
+          <div className={styles.timeline}>
+            <div className={styles.timelineItem}>
+              <div className={styles.timelineDot} />
+              <motion.div 
+                className={styles.timelineCard}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className={styles.timelineHeader}>
+                  <div>
+                    <h3 className={styles.jobTitle}>Backend Developer Intern</h3>
+                    <div className={styles.company}>
+                      <Briefcase size={16} style={{ display: "inline", marginRight: "5px", verticalAlign: "text-bottom" }} />
+                      DevERP Solutions Pvt. Ltd.
+                    </div>
+                  </div>
+                  <div className={styles.dateLocation}>
+                    <div>Jun 2025 – Apr 2026</div>
+                    <div style={{ color: "var(--color-pink)" }}>Ahmedabad, India</div>
+                  </div>
+                </div>
+
+                <ul className={styles.timelineBullets}>
+                  <li>Supported and guided the development of my final year college project (Cohort).</li>
+                  <li>Managed client communication and helped coordinate their requirements with the team.</li>
+                  <li>Solved day-to-day issues and bugs reported by clients to keep things running smoothly.</li>
+                  <li>Learnt how ERP systems work and contributed to maintaining internal modules.</li>
+                </ul>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section className={styles.section} id="projects">
+        <div className={styles.container}>
+          <div className={styles.sectionTitleContainer}>
+            <h2 className={styles.sectionTitle}>Projects</h2>
+            <span className={styles.sectionTag}>Completed Work</span>
+          </div>
+
+          <div className={styles.projectsGrid}>
+            <ProjectCard
+              index="01"
+              title="Cohort"
+              description="Full-stack platform for Indian users with scheduled messaging, event management, community groups, 24-hour stories, and AI-powered Indian language translation (Gemini API). Built in collaboration with DevERP Solutions."
+              tags={["Node.js", "Express", "React", "MongoDB", "Socket.IO", "Gemini API"]}
+              accentColor="purple"
             />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <ProjectCard
+              index="02"
+              title="4mdavad"
+              description="City-focused platform for Ahmedabad connecting residents, creators, and businesses via a city feed, event discovery, and interactive maps. Designed for a city of 8 million people."
+              tags={["React", "TypeScript", "Supabase", "Leaflet"]}
+              accentColor="green"
+            />
+            <ProjectCard
+              index="03"
+              title="Chess Online"
+              description="Real-time online chess platform enabling matches with random players using WebSocket-based communication and instant matchmaking."
+              tags={["React", "Node.js", "WebSockets", "CSS"]}
+              accentColor="cyan"
+            />
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Skills Marquee #2 (Reversed & Fast) */}
+      <Marquee items={marqueeSkills.reverse()} speed="fast" reverse={true} bgColor="var(--color-pink)" textColor="var(--color-white)" />
+
+      {/* Education & Certifications Section */}
+      <section className={styles.section} id="education">
+        <div className={styles.container}>
+          <div className={styles.sectionTitleContainer}>
+            <h2 className={styles.sectionTitle}>Education & Certifications</h2>
+            <span className={styles.sectionTag}>Qualifications</span>
+          </div>
+
+          <div className={styles.educationGrid}>
+            
+            {/* Education Receipt */}
+            <motion.div 
+              className={styles.receiptCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className={styles.receiptHeader}>
+                <h3 className={styles.receiptTitle}>ACADEMIC RECORD</h3>
+                <span className={styles.receiptTime}>DATE: MAY 2026</span>
+              </div>
+
+              <div style={{ marginBottom: "2rem" }}>
+                <div className={styles.receiptItem}>
+                  <span>DEGREE:</span>
+                  <span className={styles.receiptItemVal}>BCA (Bachelor of Computer Applications)</span>
+                </div>
+                <div className={styles.receiptItem}>
+                  <span>COLLEGE:</span>
+                  <span className={styles.receiptItemVal}>Sardar Vallabhbhai Global University</span>
+                </div>
+                <div className={styles.receiptItem}>
+                  <span>LOCATION:</span>
+                  <span className={styles.receiptItemVal}>Ahmedabad, Gujarat</span>
+                </div>
+                <div className={styles.receiptItem}>
+                  <span>GRADUATION:</span>
+                  <span className={styles.receiptItemVal}>May 2026</span>
+                </div>
+                <div className={styles.receiptTotal}>
+                  <span>FINAL GPA:</span>
+                  <span>7.11 / 10.0</span>
+                </div>
+              </div>
+
+              <div>
+                <div className={styles.receiptItem}>
+                  <span>HIGHER SECONDARY:</span>
+                  <span className={styles.receiptItemVal}>HSC (Class 12)</span>
+                </div>
+                <div className={styles.receiptItem}>
+                  <span>SCHOOL:</span>
+                  <span className={styles.receiptItemVal}>Vedant Vidhyavihar</span>
+                </div>
+                <div className={styles.receiptItem}>
+                  <span>LOCATION:</span>
+                  <span className={styles.receiptItemVal}>Ahmedabad, Gujarat</span>
+                </div>
+                <div className={styles.receiptItem}>
+                  <span>GRADUATION:</span>
+                  <span className={styles.receiptItemVal}>March 2024</span>
+                </div>
+                <div className={styles.receiptTotal}>
+                  <span>PERCENTILE:</span>
+                  <span>88 pr</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Certifications Receipt */}
+            <motion.div 
+              className={styles.receiptCard}
+              style={{ boxShadow: "var(--shadow-flat-yellow)" }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <div className={styles.receiptHeader}>
+                <h3 className={styles.receiptTitle}>CERTIFICATIONS</h3>
+                <span className={styles.receiptTime}>VERIFIED CREDENTIALS</span>
+              </div>
+
+              <ul className={styles.certList}>
+                <li className={styles.certItem}>
+                  <div className={styles.certTitle}>Supervised Machine Learning: Regression and Classification</div>
+                  <div className={styles.certSource}>
+                    <span>Stanford University / Coursera</span>
+                    <span>Apr–May 2025</span>
+                  </div>
+                </li>
+                <li className={styles.certItem}>
+                  <div className={styles.certTitle}>Data Analytics Job Simulation</div>
+                  <div className={styles.certSource}>
+                    <span>Deloitte</span>
+                    <span>May 2025</span>
+                  </div>
+                </li>
+                <li className={styles.certItem}>
+                  <div className={styles.certTitle}>Data Visualization</div>
+                  <div className={styles.certSource}>
+                    <span>Tata Group</span>
+                    <span>Apr–May 2025</span>
+                  </div>
+                </li>
+                <li className={styles.certItem}>
+                  <div className={styles.certTitle}>Course on Computer Concepts (CCC)</div>
+                  <div className={styles.certSource}>
+                    <span>TOPS Technologies / Workshop</span>
+                    <span>Jun–Aug 2024</span>
+                  </div>
+                </li>
+              </ul>
+
+              <div className={styles.receiptTotal} style={{ marginTop: "1.5rem" }}>
+                <span>TOTAL CREDENTIALS:</span>
+                <span>4 APPROVED</span>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Footer / Contact Section */}
+      <footer className={styles.footer} id="contact">
+        <div className={styles.footerContent}>
+          <div className={styles.footerLeft}>
+            <h2 className={styles.footerHeading}>
+              LET&#39;S BUILD <br />
+              <span style={{ color: "var(--color-yellow)" }}>SOMETHING COOL.</span>
+            </h2>
+
+            <div className={styles.contactGrid}>
+              <div className={styles.contactBox}>
+                <div className={styles.contactLabel}>Email</div>
+                <div className={styles.contactValue}>aayushhmistri@gmail.com</div>
+                <button 
+                  onClick={copyEmail}
+                  className="btn-brutalist" 
+                  style={{ 
+                    padding: "0.4rem 0.8rem", 
+                    fontSize: "0.75rem", 
+                    marginTop: "0.75rem",
+                    width: "100%",
+                    justifyContent: "center",
+                    background: copied ? "var(--color-green)" : "var(--color-yellow)"
+                  }}
+                >
+                  {copied ? <Check size={14} /> : <Copy size={14} />}
+                  <span>{copied ? "Copied!" : "Copy Email"}</span>
+                </button>
+              </div>
+
+              <div className={styles.contactBox}>
+                <div className={styles.contactLabel}>Phone</div>
+                <div className={styles.contactValue}>+91 9054082300</div>
+              </div>
+
+              <a 
+                href="https://github.com/Aayush-Mistri" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.contactBox}
+                style={{ display: "block", textDecoration: "none", color: "inherit" }}
+              >
+                <div className={styles.contactLabel}>GitHub</div>
+                <div className={styles.contactValue} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <Github size={16} />
+                  <span>Aayush-Mistri</span>
+                </div>
+              </a>
+
+              <a 
+                href="https://linkedin.com/in/aayush-mistri-9ba79334a" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.contactBox}
+                style={{ display: "block", textDecoration: "none", color: "inherit" }}
+              >
+                <div className={styles.contactLabel}>LinkedIn</div>
+                <div className={styles.contactValue} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <Linkedin size={16} />
+                  <span>aayush-mistri</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div className={styles.footerRight}>
+            <div className={styles.backToTop} onClick={scrollToTop} title="Back to Top">
+              <ChevronUp size={24} />
+            </div>
+
+            <div style={{ textAlign: "right", marginTop: "2rem" }}>
+              <div className={styles.copyright}>
+                DESIGN: MAXIMALISM UI v2.0
+              </div>
+              <div className={styles.copyright} style={{ marginTop: "0.25rem" }}>
+                © {new Date().getFullYear()} AAYUSH MISTRI. ALL RIGHT RESERVED.
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

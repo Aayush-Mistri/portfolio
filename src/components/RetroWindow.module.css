@@ -1,0 +1,86 @@
+.windowContainer {
+  background: var(--color-white);
+  color: var(--color-black);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-flat-black);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.windowContainer:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 10px 10px 0px var(--color-black);
+}
+
+.windowHeader {
+  background: var(--color-purple);
+  color: var(--color-white);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: var(--border-thick);
+  font-family: var(--font-mono);
+  font-weight: bold;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.windowTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.windowControls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.windowButton {
+  width: 20px;
+  height: 20px;
+  border: var(--border-medium);
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--color-black);
+  cursor: pointer;
+  box-shadow: 1px 1px 0px var(--color-black);
+  user-select: none;
+}
+
+.windowButton:active {
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 0px var(--color-black);
+}
+
+.closeButton {
+  background: var(--color-pink);
+  color: var(--color-white);
+}
+
+.windowContent {
+  padding: 1.5rem;
+  font-family: var(--font-mono);
+  line-height: 1.6;
+  background: var(--color-white);
+  flex-grow: 1;
+}
+
+.statusBar {
+  border-top: var(--border-medium);
+  background: #f0f0f0;
+  padding: 0.25rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #555;
+  display: flex;
+  justify-content: space-between;
+}
