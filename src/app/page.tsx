@@ -300,6 +300,7 @@ export default function Home() {
         </div>
       </div>
 
+
       {/* Experience Section */}
       <section className={styles.section} id="experience">
         <div className={styles.container}>
