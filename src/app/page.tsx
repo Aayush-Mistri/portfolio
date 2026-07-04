@@ -63,7 +63,7 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const [blogs, setBlogs] = useState<BlogPreviewData[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Scroll animations setup
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -107,34 +107,34 @@ export default function Home() {
   };
 
   const skills = [
-    "Python", "TypeScript", "LLMs", "RAG", "Machine Learning", 
+    "Python", "TypeScript", "LLMs", "RAG", "Machine Learning",
     "LangChain", "Vector Databases", "Node.js", "Express.js", "MongoDB", "SQL"
   ];
 
   const marqueeSkills = [
-    "BACKEND DEVELOPER", "AI ENGINEER", "LLMS & RAG", 
+    "BACKEND DEVELOPER", "AI ENGINEER", "LLMS & RAG",
     "PYTHON & TYPESCRIPT", "REST APIS", "MACHINE LEARNING"
   ];
 
   return (
     <div ref={containerRef} className={styles.page}>
-      
+
       {/* 2D/3D Floating Background Elements (Scroll Aligned) */}
       <div className={`${styles.gridBackground} bg-dots`} />
-      
-      <motion.div 
+
+      <motion.div
         className={`${styles.floatingShape} ${styles.shape1}`}
         style={{ rotate: rotateShape1 }}
       >
         ✦
       </motion.div>
-      <motion.div 
+      <motion.div
         className={`${styles.floatingShape} ${styles.shape2}`}
         style={{ rotate: rotateShape2 }}
       >
         ★
       </motion.div>
-      <motion.div 
+      <motion.div
         className={`${styles.floatingShape} ${styles.shape3}`}
         style={{ scale: scaleShape3 }}
       >
@@ -144,14 +144,14 @@ export default function Home() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <motion.div 
+          <motion.div
             className={styles.heroText}
             initial={{ x: -80, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ type: "spring", stiffness: 100, damping: 15 }}
           >
             <span className={styles.subTitle}>👾 Welcome to my space</span>
-            
+
             <div className={styles.titleRow}>
               <motion.h1 className={styles.mainTitle} style={{ x: titleX }}>
                 Aayush <br />
@@ -164,7 +164,9 @@ export default function Home() {
               </div>
             </div>
             <p className={styles.heroBio}>
-              Backend Developer specializing in constructing high-performance server-side architectures, database management, and API design. Building fast, real-time products.
+              AI Engineer building practical, reliable AI-powered products.
+
+              Focused on turning ideas into clean, useful real-world solutions.
             </p>
             <div className={styles.heroButtons}>
               <a href="#projects" className="btn-brutalist" style={{ background: "var(--color-cyan)" }}>
@@ -208,8 +210,7 @@ export default function Home() {
                   <span>cat self_description.txt</span>
                 </div>
                 <p className={styles.cmdOutput}>
-                  Backend Developer with hands-on experience building server-side applications, managing databases, and integrating APIs using Node.js and Express. Completed a 10-month internship delivering real-world backend solutions. Passionate about continuous learning, with additional exposure to Machine Learning, Data Analytics, and full-stack development.
-                </p>
+                  I'm an AI engineer who came up through backend development — so I think in terms of systems, not just prompts. I care about building things that work reliably, not just impressively. Most of my time these days goes into designing how AI systems retrieve, reason, and respond in real-world conditions. I also write about what I learn along the way — mostly AI, LLMs, and where the field's actually heading, beyond the noise and hype.</p>
               </div>
             </RetroWindow>
 
@@ -222,10 +223,10 @@ export default function Home() {
                 <div style={{ overflowX: "auto", border: "2px solid #000", background: "#ffffff", padding: "1rem", borderRadius: "4px" }}>
                   <div style={{ minWidth: "500px" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img 
-                      src="https://ghchart.rshah.org/39ff14/Aayush-Mistri" 
-                      alt="Aayush Mistri's Github Contributions" 
-                      style={{ width: "100%", height: "auto", display: "block" }} 
+                    <img
+                      src="https://ghchart.rshah.org/39ff14/Aayush-Mistri"
+                      alt="Aayush Mistri's Github Contributions"
+                      style={{ width: "100%", height: "auto", display: "block" }}
                     />
                   </div>
                 </div>
@@ -251,14 +252,14 @@ export default function Home() {
             {skills.map((skill, index) => {
               const bgColors = ["var(--color-yellow)", "var(--color-green)", "var(--color-cyan)", "var(--color-pink)", "var(--color-white)"];
               const randomBg = bgColors[index % bgColors.length];
-              
+
               return (
                 <motion.div
                   key={index}
                   className={styles.skillItem}
                   style={{ background: "var(--color-white)" }}
-                  whileHover={{ 
-                    scale: 1.08, 
+                  whileHover={{
+                    scale: 1.08,
                     backgroundColor: randomBg,
                     color: "var(--color-black)",
                     boxShadow: "8px 8px 0px var(--color-black)",
@@ -293,10 +294,10 @@ export default function Home() {
         </motion.div>
 
         <div style={{ position: "absolute", left: "5%", top: "50%", transform: "translateY(-50%)", fontFamily: "var(--font-syne)", fontSize: "clamp(1rem, 3vw, 2rem)", fontWeight: 800, color: "yellow", textTransform: "uppercase", opacity: 0.15, lineHeight: 1.1, userSelect: "none", pointerEvents: "none" }}>
-           HelloWorld<br/>("print")
+          HelloWorld<br />("print")
         </div>
         <div style={{ position: "absolute", right: "5%", top: "50%", transform: "translateY(-50%)", fontFamily: "var(--font-syne)", fontSize: "clamp(1rem, 3vw, 2rem)", fontWeight: 800, color: "green", textTransform: "uppercase", opacity: 0.15, lineHeight: 1.1, textAlign: "right", userSelect: "none", pointerEvents: "none" }}>
-          
+
         </div>
       </div>
 
@@ -312,7 +313,7 @@ export default function Home() {
           <div className={styles.timeline}>
             <div className={styles.timelineItem}>
               <div className={styles.timelineDot} />
-              <motion.div 
+              <motion.div
                 className={styles.timelineCard}
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -360,21 +361,35 @@ export default function Home() {
               description="Full-stack platform for Indian users with scheduled messaging, event management, community groups, 24-hour stories, and AI-powered Indian language translation (Gemini API). Built in collaboration with DevERP Solutions."
               tags={["Node.js", "Express", "React", "MongoDB", "LLMs", "Gemini API"]}
               accentColor="purple"
+              liveLink="https://cohort.aayushmistri.space"
+              githubLink="https://github.com/Aayush-Mistri/cohort-master"
             />
             <ProjectCard
               index="02"
+              title="AI Interviewer"
+              description="AI-powered interviewer platform featuring real-time voice agents, dynamic context injection for personalized interview experiences, and automated evaluation."
+              tags={["React", "TypeScript", "AI", "Voice Agents", "LLMs"]}
+              accentColor="pink"
+              liveLink="https://interviewer.aayushmistri.space/"
+              githubLink="https://github.com/Aayush-Mistri/AI-interviewer"
+            />
+            <ProjectCard
+              index="03"
               title="4mdavad"
               description="City-focused platform for Ahmedabad connecting residents, creators, and businesses via a city feed, event discovery, and interactive maps. Designed for a city of 8 million people."
               tags={["React", "TypeScript", "Supabase", "Leaflet"]}
               accentColor="green"
+              githubLink="https://github.com/Aayush-Mistri/4mdavad"
             />
             <ProjectCard
-              index="03"
+              index="04"
               title="Chess Online"
               description="Real-time online chess platform enabling matches with random players using WebSocket-based communication and instant matchmaking."
               tags={["React", "Node.js", "WebSockets", "TypeScript"]}
               accentColor="cyan"
+              githubLink="https://github.com/Aayush-Mistri/Chess-Online"
             />
+
           </div>
         </div>
       </section>
@@ -409,7 +424,7 @@ export default function Home() {
               <p className={styles.emptyText}>No blog posts yet. Stay tuned!</p>
             )}
           </div>
-          
+
           <div className={styles.viewMoreContainer}>
             <Link href="/blog" className="btn-brutalist">
               View All Blogs 📖
@@ -432,7 +447,7 @@ export default function Home() {
           <div className={styles.educationGrid}>
 
             {/* Education Receipt */}
-            <motion.div 
+            <motion.div
               className={styles.receiptCard}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -517,7 +532,7 @@ export default function Home() {
             </motion.div>
 
             {/* Certifications Receipt */}
-            <motion.div 
+            <motion.div
               className={styles.receiptCard}
               style={{ boxShadow: "var(--shadow-flat-yellow)" }}
               initial={{ opacity: 0, y: 30 }}
@@ -584,12 +599,12 @@ export default function Home() {
               <div className={styles.contactBox}>
                 <div className={styles.contactLabel}>Email</div>
                 <div className={styles.contactValue}>aayushhmistri@gmail.com</div>
-                <button 
+                <button
                   onClick={copyEmail}
-                  className="btn-brutalist" 
-                  style={{ 
-                    padding: "0.4rem 0.8rem", 
-                    fontSize: "0.75rem", 
+                  className="btn-brutalist"
+                  style={{
+                    padding: "0.4rem 0.8rem",
+                    fontSize: "0.75rem",
                     marginTop: "0.75rem",
                     width: "100%",
                     justifyContent: "center",
@@ -606,10 +621,10 @@ export default function Home() {
                 <div className={styles.contactValue}>+91 9054082300</div>
               </div>
 
-              <a 
-                href="https://github.com/Aayush-Mistri" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://github.com/Aayush-Mistri"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.contactBox}
                 style={{ display: "block", textDecoration: "none", color: "inherit" }}
               >
@@ -620,10 +635,10 @@ export default function Home() {
                 </div>
               </a>
 
-              <a 
-                href="https://linkedin.com/in/aayush-mistri-9ba79334a" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://linkedin.com/in/aayush-mistri-9ba79334a"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.contactBox}
                 style={{ display: "block", textDecoration: "none", color: "inherit" }}
               >
