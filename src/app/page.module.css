@@ -438,11 +438,16 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  margin-bottom: 2rem;
 }
 
 @media (max-width: 600px) {
   .receiptCard {
-    padding: 1rem;
+    padding: 0.75rem;
+    margin: 0 auto 2rem auto;
+    width: 90%;
+    border-width: 2px;
+    box-shadow: 4px 4px 0px var(--color-green);
   }
 }
 
@@ -489,7 +494,15 @@
 
 @media (max-width: 600px) {
   .receiptItem {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.1rem;
+    margin-bottom: 0.75rem;
+  }
+  .receiptItemVal {
+    text-align: left;
+    width: 100%;
   }
 }
 
@@ -512,7 +525,10 @@
 
 @media (max-width: 600px) {
   .receiptTotal {
-    font-size: 1rem;
+    font-size: 0.8rem;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding-top: 0.5rem;
   }
 }
 
