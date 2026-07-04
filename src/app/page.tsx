@@ -221,12 +221,12 @@ export default function Home() {
                   <span>curl -s ghchart.rshah.org/Aayush-Mistri</span>
                 </div>
                 <div style={{ overflowX: "auto", border: "2px solid #000", background: "#ffffff", padding: "1rem", borderRadius: "4px", width: "100%" }}>
-                  <div style={{ minWidth: "500px", width: "100%" }}>
+                  <div style={{ width: "100%", maxWidth: "100%", overflow: "hidden" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="https://ghchart.rshah.org/39ff14/Aayush-Mistri"
                       alt="Aayush Mistri's Github Contributions"
-                      style={{ width: "100%", height: "auto", display: "block" }}
+                      style={{ width: "100%", height: "auto", display: "block", maxWidth: "100%" }}
                     />
                   </div>
                 </div>

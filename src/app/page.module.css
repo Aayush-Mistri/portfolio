@@ -253,6 +253,12 @@
   line-height: 1.6;
 }
 
+@media (max-width: 600px) {
+  .cmdOutput {
+    font-size: 0.85rem;
+  }
+}
+
 /* Skills grid */
 .skillsGrid {
   display: grid;
@@ -436,7 +442,7 @@
 
 @media (max-width: 600px) {
   .receiptCard {
-    padding: 1.5rem 1rem;
+    padding: 1rem;
   }
 }
 
@@ -481,6 +487,12 @@
   flex-wrap: wrap;
 }
 
+@media (max-width: 600px) {
+  .receiptItem {
+    font-size: 0.8rem;
+  }
+}
+
 .receiptItemVal {
   font-weight: bold;
   text-align: right;
@@ -512,6 +524,12 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .certList {
+    font-size: 0.8rem;
+  }
 }
 
 .certItem {
