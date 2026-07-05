@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import styles from "./BlogCard.module.css";
 
+
+
 interface BlogCardProps {
   title: string;
   slug: string;
